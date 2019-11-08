@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\CreditCard;
 use App\Jobs\SendMailToAdmin;
+use App\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Carbon;
 
@@ -39,7 +40,8 @@ class creditCardRequest extends FormRequest
             $number = $this->number;
             $checkCardNumber = CreditCard::whereNumber($number)->first();
             if ($checkCardNumber) {
-
+                #block customer
+                User::whereId(auth()->user()->id)->update(['isBlocked' => 1]);
                 dispatch((new SendMailToAdmin($checkCardNumber->id, $number))->delay(Carbon::now()->addSeconds(5)));
                 $validator->errors()->add('number', 'Card Already exist!');
             }

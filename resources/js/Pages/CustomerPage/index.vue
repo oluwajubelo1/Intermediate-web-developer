@@ -25,7 +25,13 @@ export default {
 </script>
 <template>
     <div>
+      <div v-if="cards=='blocked'">
+        <inertia-link class="block px-6 py-2 hover:bg-indigo hover:text-white" :href="route('logout')" method="post">Logout</inertia-link>
+            <h1>You are temporary blocked</h1>
+          </div>
+          <div  v-else>
           <generalnav></generalnav>
+
         <div>
             <table>
                 <thead>
@@ -53,6 +59,7 @@ export default {
                     </tr>
                 </tbody>
             </table>
+        </div>
         </div>
     </div>
 </template>

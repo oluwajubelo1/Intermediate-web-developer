@@ -30,10 +30,11 @@ class CreditCard extends Model
 
 
 
-    public function scopeAddedAt(Builder $query)
-    {
-        $query->whereNotNull('created_at');
-    }
+    // public function scopeActiveUsers(Builder $query)
+    // {
+    //     $query
+    //     $query->whereNotNull('created_at');
+    // }
 
     public function getLinksAttribute()
     {
@@ -53,6 +54,7 @@ class CreditCard extends Model
             'restore' => Auth::user()->can('restore', $this),
         ];
     }
+
 
     public function customer()
     {

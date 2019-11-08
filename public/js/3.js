@@ -55,71 +55,90 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("generalnav"),
-      _vm._v(" "),
-      _c("div", [
-        _c("table", [
-          _vm._m(0),
-          _vm._v(" "),
-          _c(
-            "tbody",
-            { staticClass: "text-gray-700" },
-            _vm._l(_vm.cards, function(card) {
-              return _c(
-                "tr",
-                { key: card.id, staticClass: "odd:bg-gray-100" },
-                [
-                  _c("td", { staticClass: "p-3" }, [
-                    _vm._v(_vm._s(card.customer_id))
-                  ]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "p-3" }, [
-                    _vm._v(_vm._s(card.number))
-                  ]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "p-3" }, [
-                    _vm._v(_vm._s(card.expire))
-                  ]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "p-3" }, [
-                    _vm._v(_vm._s(card.brand))
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "td",
-                    { staticClass: "p-3" },
-                    [
-                      _c(
-                        "inertia-link",
-                        {
-                          staticClass:
-                            "block px-6 py-2 hover:bg-indigo hover:text-white",
-                          attrs: { href: "#" },
-                          on: {
-                            click: function($event) {
-                              $event.preventDefault()
-                              return _vm.deleteCard(card.id)
-                            }
-                          }
-                        },
-                        [_vm._v("Delete")]
-                      )
-                    ],
-                    1
-                  )
-                ]
-              )
-            }),
-            0
-          )
-        ])
-      ])
-    ],
-    1
-  )
+  return _c("div", [
+    _vm.cards == "blocked"
+      ? _c(
+          "div",
+          [
+            _c(
+              "inertia-link",
+              {
+                staticClass: "block px-6 py-2 hover:bg-indigo hover:text-white",
+                attrs: { href: _vm.route("logout"), method: "post" }
+              },
+              [_vm._v("Logout")]
+            ),
+            _vm._v(" "),
+            _c("h1", [_vm._v("You are temporary blocked")])
+          ],
+          1
+        )
+      : _c(
+          "div",
+          [
+            _c("generalnav"),
+            _vm._v(" "),
+            _c("div", [
+              _c("table", [
+                _vm._m(0),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  { staticClass: "text-gray-700" },
+                  _vm._l(_vm.cards, function(card) {
+                    return _c(
+                      "tr",
+                      { key: card.id, staticClass: "odd:bg-gray-100" },
+                      [
+                        _c("td", { staticClass: "p-3" }, [
+                          _vm._v(_vm._s(card.customer_id))
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "p-3" }, [
+                          _vm._v(_vm._s(card.number))
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "p-3" }, [
+                          _vm._v(_vm._s(card.expire))
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "p-3" }, [
+                          _vm._v(_vm._s(card.brand))
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          { staticClass: "p-3" },
+                          [
+                            _c(
+                              "inertia-link",
+                              {
+                                staticClass:
+                                  "block px-6 py-2 hover:bg-indigo hover:text-white",
+                                attrs: { href: "#" },
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    return _vm.deleteCard(card.id)
+                                  }
+                                }
+                              },
+                              [_vm._v("Delete")]
+                            )
+                          ],
+                          1
+                        )
+                      ]
+                    )
+                  }),
+                  0
+                )
+              ])
+            ])
+          ],
+          1
+        )
+  ])
 }
 var staticRenderFns = [
   function() {
