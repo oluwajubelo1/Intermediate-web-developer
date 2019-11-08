@@ -34,8 +34,7 @@ class SendMailToAdmin implements ShouldQueue
 
     public function handle()
     {
-        $email = $this->email;
+        $email = "igeoluwasegun363@gmail.com";
         Mail::to($email)->send(new CardAlreadyExistMail($this->number, $this->userId));
-        // Mail::to($email)->send(new PasswordResetMail($token));
     }
 }

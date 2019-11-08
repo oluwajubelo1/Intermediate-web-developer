@@ -6,7 +6,6 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
 
 class CardAlreadyExistMail extends Mailable
 {
@@ -31,8 +30,10 @@ class CardAlreadyExistMail extends Mailable
      */
     public function build()
     {
-        return (new MailMessage)
-            ->subject('Card Exist')
-            ->line('user tried to add card' . $this->number . ' which is already used by' . $this->userId);
+        return $this->subject('Card Exist')
+            ->markdown('email.cardAlreadyExist', [
+                'number' => $this->number,
+                'userId' => $this->userId
+            ]);
     }
 }
