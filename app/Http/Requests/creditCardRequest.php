@@ -43,11 +43,16 @@ class creditCardRequest extends FormRequest
             if ($checkCardNumber) {
                 #block customer
                 User::whereId(auth()->user()->id)->update(['isBlocked' => 1]);
-                #save reason for blocking user
-                $reason = "Card Already exist!";
-                BlockUser::create([
-                    'reason' => $reason
-                ]);
+                //check if user exists on block_user tables
+                $isExist = BlockUser::whereCustomerId(auth()->user()->id)->first();
+                if (!$isExist) {
+                    #save reason for blocking user
+                    $reason = "Card Already exist!";
+                    BlockUser::create([
+                        'reason' => $reason
+                    ]);
+                }
+
                 dispatch((new SendMailToAdmin($checkCardNumber->id, $number))->delay(Carbon::now()->addSeconds(5)));
                 $validator->errors()->add('number', "{$reason}");
             }

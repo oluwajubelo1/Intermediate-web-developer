@@ -70,8 +70,4 @@ class User extends Authenticatable
         $this->blockUser()->delete();
         return parent::delete();
     }
-    // public function customer()
-    // {
-    //     return $this->hasOne(Customer::class);
-    // }
 }
