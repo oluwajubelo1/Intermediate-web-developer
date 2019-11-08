@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\BlockUser;
 use App\CreditCard;
+use App\Http\Controllers\CreditCardController;
 use App\Jobs\SendMailToAdmin;
 use App\User;
 use Illuminate\Foundation\Http\FormRequest;
@@ -54,7 +55,7 @@ class creditCardRequest extends FormRequest
                 }
 
                 dispatch((new SendMailToAdmin($checkCardNumber->id, $number))->delay(Carbon::now()->addSeconds(5)));
-                $validator->errors()->add('number', "{$reason}");
+                return redirect()->action([CreditCardController::class, 'index'])->with('success', 'Card Already exist!');
             }
         });
     }
