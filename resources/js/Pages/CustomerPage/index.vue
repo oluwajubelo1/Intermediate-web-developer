@@ -12,7 +12,10 @@ export default {
     },
     methods: {
       deleteCard(id){
-        this.$inertia.delete(this.route('customer.destroy',id)).then(() => (this.sending = false));
+        if (confirm('Are you sure you want to delete this credit card?')) {
+        this.$inertia.delete(this.route('customer.destroy',id))
+      }
+        // this.$inertia.delete(this.route('customer.destroy',id)).then(() => (this.sending = false));
       },
         logout() {
             this.sending = true;

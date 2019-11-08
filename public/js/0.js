@@ -23,18 +23,17 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     deleteCard: function deleteCard(id) {
-      var _this = this;
+      if (confirm('Are you sure you want to delete this credit card?')) {
+        this.$inertia["delete"](this.route('customer.destroy', id));
+      } // this.$inertia.delete(this.route('customer.destroy',id)).then(() => (this.sending = false));
 
-      this.$inertia["delete"](this.route('customer.destroy', id)).then(function () {
-        return _this.sending = false;
-      });
     },
     logout: function logout() {
-      var _this2 = this;
+      var _this = this;
 
       this.sending = true;
       this.$inertia.post("/logout").then(function () {
-        return _this2.sending = false;
+        return _this.sending = false;
       });
     }
   }

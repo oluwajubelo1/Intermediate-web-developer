@@ -47,10 +47,10 @@ class CreditCardController extends Controller
         ]);
     }
 
-    public function destroy($id, CreditCard $card)
+    public function destroy(CreditCard $deleteCard)
     {
-        return $id;
-        $card->find($id)->delete();
+        $deleteCard->delete();
+        // ->delete();
         return redirect()->action([CreditCardController::class, 'index'])
             ->with('success', 'The credit card was deleted.');
     }
