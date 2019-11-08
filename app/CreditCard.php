@@ -29,13 +29,6 @@ class CreditCard extends Model
     }
 
 
-
-    // public function scopeActiveUsers(Builder $query)
-    // {
-    //     $query
-    //     $query->whereNotNull('created_at');
-    // }
-
     public function getLinksAttribute()
     {
         return [
