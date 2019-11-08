@@ -11,15 +11,8 @@ export default {
       generalnav
     },
     methods: {
-      deleteCard(id){
-        if (confirm('Are you sure you want to delete this customer?')) {
-        this.$inertia.delete(this.route('customer.destroy',id))
-      }
-      },
-        logout() {
-            this.sending = true;
-            this.$inertia.post("/logout").then(() => (this.sending = false));
-        }
+
+
     }
 };
 </script>
@@ -59,7 +52,7 @@ export default {
                           <inertia-link class="block px-6 py-2 hover:bg-indigo hover:text-white" :href="route('customer.action',{id:customer.id,isBlocked:customer.isBlocked})" method="put">UnBlock</inertia-link>
                         </td>
                         <td class="p-3" >
-                          <inertia-link class="block px-6 py-2 hover:bg-indigo hover:text-white" :href="route('customer.destroy',customer.id)" method="delete">Delete</inertia-link>
+                          <inertia-link class="block px-6 py-2 hover:bg-indigo hover:text-white" :href="route('customer.destroy',customer.id)" method="delete" onclick="return confirm('Are you sure you want to delete this customer?')">Delete</inertia-link>
                         </td>
                     </tr>
                 </tbody>

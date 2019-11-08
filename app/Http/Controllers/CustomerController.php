@@ -91,9 +91,9 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(\App\User $deleteUser)
+    public function destroy(\App\User $deleteUser, $id)
     {
-        $deleteUser->delete();
+        $deleteUser->find($id)->delete();
         // ->delete();
         return redirect()->action([CustomerController::class, 'index'])
             ->with('success', 'User was deleted.');
