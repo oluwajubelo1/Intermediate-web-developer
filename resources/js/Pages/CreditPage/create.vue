@@ -33,7 +33,7 @@ export default {
     methods: {
       submit(){
           this.sending=true;
-        this.$inertia.post(this.route('customer.store'),this.form).then(()=>this.sending=false)
+        this.$inertia.post(this.route('credit.store'),this.form).then(()=>this.sending=false)
       }
     },
 }

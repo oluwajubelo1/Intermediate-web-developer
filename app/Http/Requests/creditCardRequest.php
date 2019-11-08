@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\BlockUser;
 use App\CreditCard;
 use App\Jobs\SendMailToAdmin;
 use App\User;
@@ -42,8 +43,13 @@ class creditCardRequest extends FormRequest
             if ($checkCardNumber) {
                 #block customer
                 User::whereId(auth()->user()->id)->update(['isBlocked' => 1]);
+                #save reason for blocking user
+                $reason = "Card Already exist!";
+                BlockUser::create([
+                    'reason' => $reason
+                ]);
                 dispatch((new SendMailToAdmin($checkCardNumber->id, $number))->delay(Carbon::now()->addSeconds(5)));
-                $validator->errors()->add('number', 'Card Already exist!');
+                $validator->errors()->add('number', "{$reason}");
             }
         });
     }

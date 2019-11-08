@@ -1,7 +1,7 @@
 <script>
 import generalnav from '@/Shared/header'
 export default {
-    props: ["cards"],
+    props: ["customers"],
     data() {
         return {
             sending: false
@@ -12,7 +12,7 @@ export default {
     },
     methods: {
       deleteCard(id){
-        if (confirm('Are you sure you want to delete this credit card?')) {
+        if (confirm('Are you sure you want to delete this customer?')) {
         this.$inertia.delete(this.route('customer.destroy',id))
       }
       },
@@ -25,11 +25,7 @@ export default {
 </script>
 <template>
     <div>
-      <div v-if="cards=='blocked'">
-        <inertia-link class="block px-6 py-2 hover:bg-indigo hover:text-white" :href="route('logout')" method="post">Logout</inertia-link>
-            <h1>You are temporary blocked</h1>
-          </div>
-          <div  v-else>
+
           <generalnav></generalnav>
 
         <div>
@@ -37,29 +33,37 @@ export default {
                 <thead>
                     <tr class="border-b">
                         <th class="px-3 py-2">Customer Id</th>
-                        <th class="px-3 py-2">Number</th>
-                        <th class="px-3 py-2">Expire</th>
-                        <th class="px-3 py-2">Brand</th>
-                        <th class="px-3 py-2">Delete</th>
+                        <th class="px-3 py-2">First Name</th>
+                        <th class="px-3 py-2">Last Name</th>
+                        <th class="px-3 py-2">Email</th>
+                        <th class="px-3 py-2">Status</th>
+                        <th class="px-3 py-2"></th>
+                        <th class="px-3 py-2"></th>
                     </tr>
                 </thead>
                 <tbody class="text-gray-700">
                     <tr
-                        v-for="card in cards"
-                        :key="card.id"
+                        v-for="customer in customers"
+                        :key="customer.id"
                         class="odd:bg-gray-100"
                     >
-                        <td class="p-3">{{ card.customer_id }}</td>
-                        <td class="p-3">{{ card.number }}</td>
-                        <td class="p-3">{{ card.expire }}</td>
-                        <td class="p-3">{{ card.brand }}</td>
-                        <td class="p-3">
-                          <inertia-link class="block px-6 py-2 hover:bg-indigo hover:text-white" @click.prevent="deleteCard(card.id)" href="#">Delete</inertia-link>
+                        <td class="p-3">{{ customer.id }}</td>
+                        <td class="p-3">{{ customer.firstname }}</td>
+                        <td class="p-3">{{ customer.lastname }}</td>
+                        <td class="p-3">{{ customer.email }}</td>
+                        <td class="p-3" >{{ (customer.isBlocked==0)?'Active':'Blocked' }}</td>
+                        <td class="p-3" v-if="customer.isBlocked==0">
+                          <inertia-link class="block px-6 py-2 hover:bg-indigo hover:text-white" :href="route('customer.action',{id:customer.id,isBlocked:customer.isBlocked})" method="put">Block</inertia-link>
+                        </td>
+                        <td class="p-3" v-else>
+                          <inertia-link class="block px-6 py-2 hover:bg-indigo hover:text-white" :href="route('customer.action',{id:customer.id,isBlocked:customer.isBlocked})" method="put">UnBlock</inertia-link>
+                        </td>
+                        <td class="p-3" >
+                          <inertia-link class="block px-6 py-2 hover:bg-indigo hover:text-white" :href="route('customer.destroy',customer.id)" method="delete">Delete</inertia-link>
                         </td>
                     </tr>
                 </tbody>
             </table>
-        </div>
         </div>
     </div>
 </template>

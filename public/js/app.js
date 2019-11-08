@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "js/" + ({}[chunkId]||chunkId) + ".js?id=" + {"1":"dd707e3396ef6077dcf5","2":"6583b986c69f5ec297e0","3":"98cf56a49b73bb9bda9e","4":"6927c09defcd5e5fc1c1"}[chunkId] + ""
+/******/ 		return __webpack_require__.p + "js/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"1197f194d21a9278dca8","1":"dd707e3396ef6077dcf5","3":"55ab3337dfb196c99304","5":"c54a5822393b456e8e54","6":"3d5443825259e71cf815"}[chunkId] + ""
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -11451,34 +11451,54 @@ var map = {
 		"./resources/js/Pages/Auth/Login.vue",
 		1
 	],
+	"./CreditPage": [
+		"./resources/js/Pages/CreditPage/index.vue",
+		0,
+		5
+	],
+	"./CreditPage/": [
+		"./resources/js/Pages/CreditPage/index.vue",
+		0,
+		5
+	],
+	"./CreditPage/create": [
+		"./resources/js/Pages/CreditPage/create.vue",
+		0,
+		6
+	],
+	"./CreditPage/create.vue": [
+		"./resources/js/Pages/CreditPage/create.vue",
+		0,
+		6
+	],
+	"./CreditPage/index": [
+		"./resources/js/Pages/CreditPage/index.vue",
+		0,
+		5
+	],
+	"./CreditPage/index.vue": [
+		"./resources/js/Pages/CreditPage/index.vue",
+		0,
+		5
+	],
 	"./CustomerPage": [
 		"./resources/js/Pages/CustomerPage/index.vue",
-		2,
+		0,
 		3
 	],
 	"./CustomerPage/": [
 		"./resources/js/Pages/CustomerPage/index.vue",
-		2,
+		0,
 		3
-	],
-	"./CustomerPage/create": [
-		"./resources/js/Pages/CustomerPage/create.vue",
-		2,
-		4
-	],
-	"./CustomerPage/create.vue": [
-		"./resources/js/Pages/CustomerPage/create.vue",
-		2,
-		4
 	],
 	"./CustomerPage/index": [
 		"./resources/js/Pages/CustomerPage/index.vue",
-		2,
+		0,
 		3
 	],
 	"./CustomerPage/index.vue": [
 		"./resources/js/Pages/CustomerPage/index.vue",
-		2,
+		0,
 		3
 	]
 };

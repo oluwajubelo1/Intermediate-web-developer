@@ -12,7 +12,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Shared_header__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Shared/header */ "./resources/js/Shared/header.vue");
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["cards"],
+  props: ["customers"],
   data: function data() {
     return {
       sending: false
@@ -23,7 +23,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     deleteCard: function deleteCard(id) {
-      if (confirm('Are you sure you want to delete this credit card?')) {
+      if (confirm('Are you sure you want to delete this customer?')) {
         this.$inertia["delete"](this.route('customer.destroy', id));
       }
     },
@@ -55,90 +55,120 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _vm.cards == "blocked"
-      ? _c(
-          "div",
-          [
-            _c(
-              "inertia-link",
-              {
-                staticClass: "block px-6 py-2 hover:bg-indigo hover:text-white",
-                attrs: { href: _vm.route("logout"), method: "post" }
-              },
-              [_vm._v("Logout")]
-            ),
-            _vm._v(" "),
-            _c("h1", [_vm._v("You are temporary blocked")])
-          ],
-          1
-        )
-      : _c(
-          "div",
-          [
-            _c("generalnav"),
-            _vm._v(" "),
-            _c("div", [
-              _c("table", [
-                _vm._m(0),
-                _vm._v(" "),
-                _c(
-                  "tbody",
-                  { staticClass: "text-gray-700" },
-                  _vm._l(_vm.cards, function(card) {
-                    return _c(
-                      "tr",
-                      { key: card.id, staticClass: "odd:bg-gray-100" },
-                      [
-                        _c("td", { staticClass: "p-3" }, [
-                          _vm._v(_vm._s(card.customer_id))
-                        ]),
-                        _vm._v(" "),
-                        _c("td", { staticClass: "p-3" }, [
-                          _vm._v(_vm._s(card.number))
-                        ]),
-                        _vm._v(" "),
-                        _c("td", { staticClass: "p-3" }, [
-                          _vm._v(_vm._s(card.expire))
-                        ]),
-                        _vm._v(" "),
-                        _c("td", { staticClass: "p-3" }, [
-                          _vm._v(_vm._s(card.brand))
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "td",
-                          { staticClass: "p-3" },
-                          [
-                            _c(
-                              "inertia-link",
-                              {
-                                staticClass:
-                                  "block px-6 py-2 hover:bg-indigo hover:text-white",
-                                attrs: { href: "#" },
-                                on: {
-                                  click: function($event) {
-                                    $event.preventDefault()
-                                    return _vm.deleteCard(card.id)
-                                  }
-                                }
-                              },
-                              [_vm._v("Delete")]
-                            )
-                          ],
-                          1
-                        )
-                      ]
+  return _c(
+    "div",
+    [
+      _c("generalnav"),
+      _vm._v(" "),
+      _c("div", [
+        _c("table", [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            { staticClass: "text-gray-700" },
+            _vm._l(_vm.customers, function(customer) {
+              return _c(
+                "tr",
+                { key: customer.id, staticClass: "odd:bg-gray-100" },
+                [
+                  _c("td", { staticClass: "p-3" }, [
+                    _vm._v(_vm._s(customer.id))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "p-3" }, [
+                    _vm._v(_vm._s(customer.firstname))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "p-3" }, [
+                    _vm._v(_vm._s(customer.lastname))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "p-3" }, [
+                    _vm._v(_vm._s(customer.email))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "p-3" }, [
+                    _vm._v(
+                      _vm._s(customer.isBlocked == 0 ? "Active" : "Blocked")
                     )
-                  }),
-                  0
-                )
-              ])
-            ])
-          ],
-          1
-        )
-  ])
+                  ]),
+                  _vm._v(" "),
+                  customer.isBlocked == 0
+                    ? _c(
+                        "td",
+                        { staticClass: "p-3" },
+                        [
+                          _c(
+                            "inertia-link",
+                            {
+                              staticClass:
+                                "block px-6 py-2 hover:bg-indigo hover:text-white",
+                              attrs: {
+                                href: _vm.route("customer.action", {
+                                  id: customer.id,
+                                  isBlocked: customer.isBlocked
+                                }),
+                                method: "put"
+                              }
+                            },
+                            [_vm._v("Block")]
+                          )
+                        ],
+                        1
+                      )
+                    : _c(
+                        "td",
+                        { staticClass: "p-3" },
+                        [
+                          _c(
+                            "inertia-link",
+                            {
+                              staticClass:
+                                "block px-6 py-2 hover:bg-indigo hover:text-white",
+                              attrs: {
+                                href: _vm.route("customer.action", {
+                                  id: customer.id,
+                                  isBlocked: customer.isBlocked
+                                }),
+                                method: "put"
+                              }
+                            },
+                            [_vm._v("UnBlock")]
+                          )
+                        ],
+                        1
+                      ),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    { staticClass: "p-3" },
+                    [
+                      _c(
+                        "inertia-link",
+                        {
+                          staticClass:
+                            "block px-6 py-2 hover:bg-indigo hover:text-white",
+                          attrs: {
+                            href: _vm.route("customer.destroy", customer.id),
+                            method: "delete"
+                          }
+                        },
+                        [_vm._v("Delete")]
+                      )
+                    ],
+                    1
+                  )
+                ]
+              )
+            }),
+            0
+          )
+        ])
+      ])
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
@@ -149,13 +179,17 @@ var staticRenderFns = [
       _c("tr", { staticClass: "border-b" }, [
         _c("th", { staticClass: "px-3 py-2" }, [_vm._v("Customer Id")]),
         _vm._v(" "),
-        _c("th", { staticClass: "px-3 py-2" }, [_vm._v("Number")]),
+        _c("th", { staticClass: "px-3 py-2" }, [_vm._v("First Name")]),
         _vm._v(" "),
-        _c("th", { staticClass: "px-3 py-2" }, [_vm._v("Expire")]),
+        _c("th", { staticClass: "px-3 py-2" }, [_vm._v("Last Name")]),
         _vm._v(" "),
-        _c("th", { staticClass: "px-3 py-2" }, [_vm._v("Brand")]),
+        _c("th", { staticClass: "px-3 py-2" }, [_vm._v("Email")]),
         _vm._v(" "),
-        _c("th", { staticClass: "px-3 py-2" }, [_vm._v("Delete")])
+        _c("th", { staticClass: "px-3 py-2" }, [_vm._v("Status")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "px-3 py-2" }),
+        _vm._v(" "),
+        _c("th", { staticClass: "px-3 py-2" })
       ])
     ])
   }

@@ -14,14 +14,14 @@ class CreditCardController extends Controller
     public function index()
     {
 
-        return inertia('CustomerPage/index', [
-            'cards' => (auth()->user()->role === "admin") ? CreditCard::withTrashed()->get() : ((User::whereId(auth()->user()->id)->value('isBlocked') == 0) ? CreditCard::whereCustomerId(auth()->user()->id)->get() : "blocked"),
+        return inertia('CreditPage/index', [
+            'cards' => (auth()->user()->role === "admin") ? CreditCard::withTrashed()->get(['id', 'customer_id', 'number', 'expire', 'brand']) : ((User::whereId(auth()->user()->id)->value('isBlocked') == 0) ? CreditCard::whereCustomerId(auth()->user()->id)->get(['id', 'customer_id', 'number', 'expire', 'brand']) : "blocked"),
         ]);
     }
 
     public function create()
     {
-        return inertia('CustomerPage/create', [
+        return inertia('CreditPage/create', [
             'card' => new CreditCard(),
         ]);
     }
@@ -34,7 +34,7 @@ class CreditCardController extends Controller
 
     public function edit(CreditCard $card)
     {
-        return inertia('CustomerPage/create', [
+        return inertia('CreditPage/create', [
             'card' => $card
         ]);
     }
