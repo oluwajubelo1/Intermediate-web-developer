@@ -39,6 +39,7 @@ class creditCardRequest extends FormRequest
             $number = $this->number;
             $checkCardNumber = CreditCard::whereNumber($number)->first();
             if ($checkCardNumber) {
+
                 dispatch((new SendMailToAdmin($checkCardNumber->id, $number))->delay(Carbon::now()->addSeconds(5)));
                 $validator->errors()->add('number', 'Card Already exist!');
             }

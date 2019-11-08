@@ -307,14 +307,17 @@ var render = function() {
         "div",
         { staticClass: "mt-2 py-2 shadow-lg bg-white rounded text-sm" },
         [
-          _c(
-            "inertia-link",
-            {
-              staticClass: "block px-6 py-2 hover:bg-indigo hover:text-white",
-              attrs: { href: _vm.route("customer.create") }
-            },
-            [_vm._v("Add Credit Card")]
-          ),
+          _vm.$page.auth.user.role === "customer"
+            ? _c(
+                "inertia-link",
+                {
+                  staticClass:
+                    "block px-6 py-2 hover:bg-indigo hover:text-white",
+                  attrs: { href: _vm.route("customer.create") }
+                },
+                [_vm._v("Add Credit Card")]
+              )
+            : _vm._e(),
           _vm._v(" "),
           _c(
             "inertia-link",

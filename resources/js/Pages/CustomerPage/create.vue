@@ -43,23 +43,14 @@ export default {
     <generalnav></generalnav>
      <form @submit.prevent="submit">
        <div class="p-8 -mr-6 -mb-8 flex flex-wrap">
-       <text-input v-model="form.number" :errors="$page.errors.number" class="pr-6 pb-8 w-full lg:w-1/2" label="Card Number" />
-       <!-- <div>
-         <label>Card Number</label>
-         <input type="text" :errors="$page.errors.number" class="pr-6 pb-8 w-full lg:w1/2" v-model="form.number">
-       </div> -->
+        <text-input v-model="form.number" :errors="$page.errors.number" class="pr-6 pb-8 w-full lg:w-1/2" label="Card Number" />
 
-      <text-date v-model="form.expire" :errors="$page.errors.expire" class="pr-6 pb-8 w-full lg:w-1/2" label="Expire" />
-       <!-- <div>
-         <label>Expire</label>
-         <input type="date" :errors="$page.errors.expire" class="pr-6 pb-8 w-full lg:w1/2" v-model="form.expire">
-       </div> -->
 
-<text-input v-model="form.brand" :errors="$page.errors.brand" class="pr-6 pb-8 w-full lg:w-1/2" label="Brand" />
-       <!-- <div>
-         <label>Brand</label>
-         <input type="text" :errors="$page.errors.brand" class="pr-6 pb-8 w-full lg:w1/2" v-model="form.brand">
-       </div> -->
+        <text-date v-model="form.expire" :errors="$page.errors.expire" class="pr-6 pb-8 w-full lg:w-1/2" label="Expire" />
+
+
+        <text-input v-model="form.brand" :errors="$page.errors.brand" class="pr-6 pb-8 w-full lg:w-1/2" label="Brand" />
+
        </div>
         <div class="px-8 py-4 bg-grey-lightest border-t border-grey-lighter flex justify-end items-center">
           <button :loading="sending" class="btn-indigo" type="submit">Create Organization</button>
