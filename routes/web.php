@@ -22,6 +22,7 @@ Route::redirect('/', '/credit');
 Route::middleware('auth')->group(function () {
     Route::post('credit/{post}/restore', [CreditCardController::class, 'restore']);
     Route::put('customer/{id}/{isBlocked}', 'CustomerController@action')->name('customer.action');
+    Route::delete('customer/{id}', 'CustomerController@deleteUser')->name('customer.delete');
     Route::resource('credit', CreditCardController::class, ['except' => ['show']]);
     Route::resource('customer', CustomerController::class, ['except' => 'show']);
 });

@@ -91,7 +91,7 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(\App\User $deleteUser, $id)
+    public function deleteUser(\App\User $deleteUser, $id)
     {
         $deleteUser->find($id)->delete();
         // ->delete();

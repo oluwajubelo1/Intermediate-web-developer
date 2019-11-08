@@ -16,4 +16,8 @@ class BlockUser extends Model
         $attributes['customer_id'] = auth()->user()->id;
         parent::__construct($attributes);
     }
+    public function customer()
+    {
+        return $this->belongsTo(User::class, 'customer_id');
+    }
 }

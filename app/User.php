@@ -59,6 +59,17 @@ class User extends Authenticatable
     {
         return $this->hasMany(CreditCard::class, 'customer_id');
     }
+    public function blockUser()
+    {
+        return $this->hasOne(BlockUser::class, 'customer_id');
+    }
+
+    public function delete()
+    {
+        $this->creditCards()->delete();
+        $this->blockUser()->delete();
+        return parent::delete();
+    }
     // public function customer()
     // {
     //     return $this->hasOne(Customer::class);

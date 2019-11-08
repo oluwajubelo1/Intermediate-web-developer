@@ -52,7 +52,7 @@ export default {
                           <inertia-link class="block px-6 py-2 hover:bg-indigo hover:text-white" :href="route('customer.action',{id:customer.id,isBlocked:customer.isBlocked})" method="put">UnBlock</inertia-link>
                         </td>
                         <td class="p-3" >
-                          <inertia-link class="block px-6 py-2 hover:bg-indigo hover:text-white" :href="route('customer.destroy',customer.id)" method="delete" onclick="return confirm('Are you sure you want to delete this customer?')">Delete</inertia-link>
+                          <inertia-link class="block px-6 py-2 hover:bg-indigo hover:text-white" :href="route('customer.delete',customer.id)" method="delete" onclick="return confirm('Are you sure you want to delete this customer?')">Delete</inertia-link>
                         </td>
                     </tr>
                 </tbody>
