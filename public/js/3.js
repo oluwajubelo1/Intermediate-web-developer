@@ -25,8 +25,7 @@ __webpack_require__.r(__webpack_exports__);
     deleteCard: function deleteCard(id) {
       if (confirm('Are you sure you want to delete this credit card?')) {
         this.$inertia["delete"](this.route('customer.destroy', id));
-      } // this.$inertia.delete(this.route('customer.destroy',id)).then(() => (this.sending = false));
-
+      }
     },
     logout: function logout() {
       var _this = this;

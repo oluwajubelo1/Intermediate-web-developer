@@ -3,15 +3,18 @@
 namespace App;
 
 use App\Http\Controllers\CreditCardController;
+use App\Traits\Useruuid;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class CreditCard extends Model
 {
-    use SoftDeletes;
-    protected $fillable = ['customer_id', 'number', 'expire', 'brand'];
+    use SoftDeletes, Useruuid;
+    public $incrementing = false;
+    protected $fillable = ['id', 'customer_id', 'number', 'expire', 'brand'];
 
     protected $with = ['customer'];
 
@@ -20,9 +23,12 @@ class CreditCard extends Model
 
     public function __construct(array $attributes = [])
     {
+        self::bootUsesUuid();
         $attributes['customer_id'] = auth()->user()->id;
         parent::__construct($attributes);
     }
+
+
 
     public function scopeAddedAt(Builder $query)
     {

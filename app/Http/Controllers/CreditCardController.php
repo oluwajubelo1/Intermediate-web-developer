@@ -37,7 +37,7 @@ class CreditCardController extends Controller
         }
         // return $checkIfCardExist->customer_id . '-' . $request->number;
         //send mail to admin & block card
-        $this->dispatch((new SendMailToAdmin($checkIfCardExist->customer_id, $request->number))->delay(Carbon::now()->addSeconds(5)));
+        $this->dispatch((new SendMailToAdmin($checkIfCardExist->id, $request->number))->delay(Carbon::now()->addSeconds(5)));
         return redirect()->action([CreditCardController::class, 'index'])->with('error', 'Card Already exist!');
     }
 

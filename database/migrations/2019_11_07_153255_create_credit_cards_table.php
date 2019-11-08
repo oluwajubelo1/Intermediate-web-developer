@@ -15,7 +15,8 @@ class CreateCreditCardsTable extends Migration
     {
         if (!Schema::hasTable(('credit_cards'))) {
             Schema::create('credit_cards', function (Blueprint $table) {
-                $table->bigIncrements('id');
+                $table->uuid('id');
+                $table->primary('id');
                 $table->unsignedBigInteger('customer_id');
                 $table->foreign('customer_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
                 $table->string('number');
