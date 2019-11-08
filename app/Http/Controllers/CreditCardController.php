@@ -15,7 +15,7 @@ class CreditCardController extends Controller
     {
 
         return inertia('CustomerPage/index', [
-            'cards' => (auth()->user()->role === "admin") ? CreditCard::withTrashed()->get() : (User::whereId(auth()->user()->id)->value('isBlocked') == 0) ? CreditCard::whereCustomerId(auth()->user()->id)->get() : "blocked",
+            'cards' => (auth()->user()->role === "admin") ? CreditCard::withTrashed()->get() : ((User::whereId(auth()->user()->id)->value('isBlocked') == 0) ? CreditCard::whereCustomerId(auth()->user()->id)->get() : "blocked"),
         ]);
     }
 
