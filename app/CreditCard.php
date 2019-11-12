@@ -24,11 +24,19 @@ class CreditCard extends Model
     public function __construct(array $attributes = [])
     {
         self::bootUsesUuid();
-        $attributes['customer_id'] = auth()->user()->id;
+        // if (!array_key_exists('customer_id', $attributes)) {
+        //     $attributes['customer_id'] = auth()->user()->id;
+        // }
         parent::__construct($attributes);
     }
 
-
+    public static function create(array $attributes = [])
+    {
+        if (!array_key_exists('customer_id', $attributes)) {
+            $attributes['customer_id'] = auth()->user()->id;
+        }
+        return static::query()->create($attributes);
+    }
     public function getLinksAttribute()
     {
         return [

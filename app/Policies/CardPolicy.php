@@ -29,7 +29,13 @@ class CardPolicy
         if (!$card->customer) {
             return true;
         }
+
         return $card->customer->is($user);
+    }
+
+    public function viewCustomer()
+    {
+        return;
     }
 
     public function delete(User $user, CreditCard $card)

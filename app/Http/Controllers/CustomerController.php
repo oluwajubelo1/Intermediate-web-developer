@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      *
@@ -15,6 +17,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
+        $this->authorize('isAdmin');
         return inertia('CustomerPage/index', [
             'customers' => (auth()->user()->role === "admin") ? User::where('role', '!=', 'admin')->get(['id', 'firstname', 'lastname', 'email', 'isBlocked']) : 'not right',
         ]);

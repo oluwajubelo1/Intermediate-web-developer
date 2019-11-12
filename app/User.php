@@ -11,6 +11,7 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 // use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizeContract;
 // use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
@@ -64,6 +65,12 @@ class User extends Authenticatable
         return $this->hasOne(BlockUser::class, 'customer_id');
     }
 
+    // public function getPermissionsAttribute()
+    // {
+    //     return [
+    //         'viewCustomer' => Auth::user()->can('viewCustomer', $this),
+    //     ];
+    // }
     public function delete()
     {
         $this->creditCards()->delete();
