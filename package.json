@@ -17,7 +17,7 @@
         "cross-env": "^5.1",
         "css-loader": "^3.2.0",
         "fuse.js": "^3.4.5",
-        "jquery": "^3.2",
+        "jquery": "^3.5",
         "laravel-mix": "^4.0.7",
         "lodash": "^4.17.13",
         "node-sass": "^4.13.0",
